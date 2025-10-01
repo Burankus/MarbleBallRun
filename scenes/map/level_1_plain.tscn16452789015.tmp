@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://dux1r3l4mromd"]
+
+[ext_resource type="Script" uid="uid://dvi5huxmf7b12" path="res://scripts/map/level_1_plain.gd" id="1_5vvdp"]
+[ext_resource type="PackedScene" uid="uid://b3el38msktq4o" path="res://scenes/blocks/block_grass_large.tscn" id="2_5vvdp"]
+[ext_resource type="PackedScene" uid="uid://reft8rudt1td" path="res://scenes/blocks/block_grass_long.tscn" id="3_ulnty"]
+[ext_resource type="PackedScene" uid="uid://c55vrtrd2ti3x" path="res://scenes/blocks/spike_block_wide.tscn" id="4_yrpwq"]
+[ext_resource type="PackedScene" uid="uid://dxntsk88fst4a" path="res://scenes/map/goal.tscn" id="5_upx2g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vvdp"]
+albedo_color = Color(4.23551e-06, 0.729411, 0.730009, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ulnty"]
+material = SubResource("StandardMaterial3D_5vvdp")
+size = Vector2(100, 100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5vvdp"]
+points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
+
+[node name="Level1Plain" type="Node3D"]
+script = ExtResource("1_5vvdp")
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.4813, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ulnty")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="Area3D" parent="Enviroment/MeshInstance3D"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_5vvdp")
+
+[node name="PlayerSpawnPos" type="Marker3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3.01458, 0)
+
+[node name="Block-grass-overhang-large" parent="." instance=ExtResource("2_5vvdp")]
+
+[node name="Block-grass-overhang-large2" parent="." instance=ExtResource("2_5vvdp")]
+transform = Transform3D(7.72741, 0, 2.07055, 0, 2, 0, -2.07055, 0, 7.72741, 0, 0, 0)
+
+[node name="Block-grass-overhang-large3" parent="." instance=ExtResource("2_5vvdp")]
+transform = Transform3D(16, 0, 0, 0, 4, 0, 0, 0, 8, 7.56228, 0, -23.3703)
+
+[node name="Block-grass-long10" parent="." instance=ExtResource("3_ulnty")]
+transform = Transform3D(-2.62268e-07, 0, 5, 0, 2, 0, -6, 0, -2.18557e-07, -1, 1.84209, -12)
+
+[node name="Block-grass-long" parent="." instance=ExtResource("3_ulnty")]
+transform = Transform3D(12, 0, 0, 0, 5, 0, 0, 0, 8, 8, 4, -28)
+
+[node name="Spike-block-wide" parent="." instance=ExtResource("4_yrpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -2)
+
+[node name="Goal" parent="." instance=ExtResource("5_upx2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
+
+[connection signal="body_entered" from="Enviroment/MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_body_entered"]

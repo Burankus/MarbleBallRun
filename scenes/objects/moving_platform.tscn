@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dic2u1mflwix1"]
+
+[ext_resource type="ArrayMesh" uid="uid://efs523a17fih" path="res://assets/Kenney/PlatformerKit/block-moving-large.obj" id="1_gfj5l"]
+
+[sub_resource type="Curve3D" id="Curve3D_ll65p"]
+resource_local_to_scene = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fja67"]
+points = PackedVector3Array(-0.400059, 0, -0.5, -0.468383, 0, -0.468383, -0.400059, 0.5, -0.5, 0.399961, 0, -0.5, -0.5, 0, -0.400059, -0.468383, 0.5, -0.468383, 0.399961, 0.5, -0.5, 0.468285, 0, -0.468383, -0.5, 0.5, -0.400059, -0.5, 0, 0.399961, 0.468285, 0.5, -0.468383, 0.5, 0, -0.400059, -0.5, 0.5, 0.399961, -0.468383, 0, 0.468285, 0.5, 0.5, -0.400059, 0.5, 0, 0.399961, -0.468383, 0.5, 0.468285, -0.400059, 0, 0.5, 0.5, 0.5, 0.399961, 0.468285, 0, 0.468285, -0.400059, 0.5, 0.5, 0.399961, 0, 0.5, 0.468285, 0.5, 0.468285, 0.399961, 0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_o88rs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cr5dy"]
+resource_name = "move"
+length = 6.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cij2u"]
+_data = {
+&"RESET": SubResource("Animation_o88rs"),
+&"move": SubResource("Animation_cr5dy")
+}
+
+[node name="moving_platform" type="Path3D"]
+curve = SubResource("Curve3D_ll65p")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+tilt_enabled = false
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="PathFollow3D"]
+remote_path = NodePath("../../AnimatableBody3D")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+
+[node name="Block-moving-large" type="MeshInstance3D" parent="AnimatableBody3D"]
+mesh = ExtResource("1_gfj5l")
+skeleton = NodePath("../../PathFollow3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fja67")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_cij2u")
+}
+autoplay = "move"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://reft8rudt1td"]
+
+[ext_resource type="ArrayMesh" uid="uid://b31sucpfgg6rd" path="res://assets/Kenney/PlatformerKit/block-grass-long.obj" id="1_ldwcm"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mtj7q"]
+points = PackedVector3Array(-0.75369, 0.875, -0.541062, -0.726379, 1, -0.50007, 0.753486, 0.875, -0.541062, -0.726379, 0, -0.50007, -0.956888, 0.875, -0.456958, -0.919999, 1, -0.419885, 0.726175, 1, -0.50007, 0.726175, 0, -0.50007, 0.956685, 0.875, -0.456958, -0.919999, 0, -0.419885, -1.04106, 0.875, -0.253689, -1.0001, 1, -0.226255, 0.919795, 1, -0.419885, 0.919795, 0, -0.419885, 1.04086, 0.875, -0.253689, -1.0001, 0, -0.226255, -1.04106, 0.875, 0.253583, -1.0001, 1, 0.226149, 0.999892, 1, -0.226255, 0.999892, 0, -0.226255, 1.04086, 0.875, 0.253583, -1.0001, 0, 0.226149, -0.919999, 0, 0.419779, -0.956888, 0.875, 0.456852, -0.919999, 1, 0.419779, 0.999892, 1, 0.226149, 0.999892, 0, 0.226149, 0.919795, 1, 0.419779, 0.956685, 0.875, 0.456852, 0.919795, 0, 0.419779, -0.726379, 0, 0.499964, -0.75369, 0.875, 0.541062, -0.726379, 1, 0.499964, 0.726175, 1, 0.499964, 0.753486, 0.875, 0.541062, 0.726175, 0, 0.499964)
+
+[node name="Block-grass-long" type="MeshInstance3D"]
+transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("1_ldwcm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_mtj7q")

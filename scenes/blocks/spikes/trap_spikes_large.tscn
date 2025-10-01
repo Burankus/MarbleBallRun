@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwy6ew5iu1hej"]
+
+[ext_resource type="ArrayMesh" uid="uid://d4fbcq62q206s" path="res://assets/Kenney/PlatformerKit/trap-spikes-large.obj" id="1_lousq"]
+[ext_resource type="Script" uid="uid://davxx03tq702t" path="res://scripts/object/trap_spikes_large.gd" id="2_bmtee"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bmtee"]
+points = PackedVector3Array(-0.3825, 0, -0.3825, -0.3825, 0, 0.3825, -0.363405, 0.0849917, -0.363405, 0.3825, 0, -0.3825, -0.363405, 0.0849917, 0.36333, 0.3825, 0, 0.3825, -0.225995, 0.255, -0.225995, 0.36333, 0.0849917, -0.363405, -0.225995, 0.255, 0.225921, 0.36333, 0.0849917, 0.36333, 0.225921, 0.255, -0.225995, 0.225921, 0.255, 0.225921)
+
+[node name="Trap-spikes-large" type="MeshInstance3D"]
+mesh = ExtResource("1_lousq")
+script = ExtResource("2_bmtee")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_bmtee")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxntsk88fst4a"]
+
+[ext_resource type="Script" uid="uid://c68dj3lmwqxtf" path="res://scripts/object/goal.gd" id="1_j4o6d"]
+[ext_resource type="ArrayMesh" uid="uid://dwe6xiidfrwue" path="res://assets/Kenney/PlatformerKit/block-moving-blue.obj" id="1_xvip5"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j4o6d"]
+points = PackedVector3Array(-0.400059, 0, -0.5, -0.468383, 0, -0.468383, -0.400059, 0.5, -0.5, 0.399961, 0, -0.5, -0.5, 0, -0.400059, -0.468383, 0.5, -0.468383, 0.399961, 0.5, -0.5, 0.468285, 0, -0.468383, -0.5, 0.5, -0.400059, -0.5, 0, 0.399961, 0.468285, 0.5, -0.468383, 0.5, 0, -0.400059, -0.5, 0.5, 0.399961, -0.468383, 0, 0.468285, 0.5, 0.5, -0.400059, 0.5, 0, 0.399961, -0.468383, 0.5, 0.468285, -0.400059, 0, 0.5, 0.5, 0.5, 0.399961, 0.468285, 0, 0.468285, -0.400059, 0.5, 0.5, 0.399961, 0, 0.5, 0.468285, 0.5, 0.468285, 0.399961, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7bpqd"]
+size = Vector3(1, 0.05, 1)
+
+[node name="Goal" type="Node3D"]
+script = ExtResource("1_j4o6d")
+
+[node name="Block-moving-blue" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("1_xvip5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Block-moving-blue"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Block-moving-blue/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_j4o6d")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456768, 0)
+collision_mask = 2
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 25.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.283482, 0)
+shape = SubResource("BoxShape3D_7bpqd")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

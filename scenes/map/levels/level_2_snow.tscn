@@ -1,0 +1,440 @@
+[gd_scene load_steps=32 format=3 uid="uid://3uypvxij2hn5"]
+
+[ext_resource type="Script" uid="uid://scgw3vhumm05" path="res://scripts/map/level_2_snow.gd" id="1_r6rj0"]
+[ext_resource type="Shader" uid="uid://v7iagc16spps" path="res://shaders/icy_water_shader.tres" id="1_wsan6"]
+[ext_resource type="PackedScene" uid="uid://g5d1vhe2gdjm" path="res://scenes/blocks/snow/block_snow_large.tscn" id="2_y5juu"]
+[ext_resource type="PackedScene" uid="uid://dhraw8hgtfn7i" path="res://scenes/blocks/snow/block_snow_large_slope_narrow.tscn" id="3_g87if"]
+[ext_resource type="PackedScene" uid="uid://dic2u1mflwix1" path="res://scenes/objects/moving_platform.tscn" id="5_44vtk"]
+[ext_resource type="PackedScene" uid="uid://4b682fg81iww" path="res://scenes/blocks/snow/moving_snow.tscn" id="6_r6rj0"]
+[ext_resource type="PackedScene" uid="uid://w1wats20gcxj" path="res://scenes/blocks/snow/block_snow_large_tall.tscn" id="7_kbih0"]
+[ext_resource type="PackedScene" uid="uid://dxntsk88fst4a" path="res://scenes/blocks/goal/goal.tscn" id="8_m0hwp"]
+[ext_resource type="PackedScene" uid="uid://dt71hpv3bhcpp" path="res://scenes/blocks/snow/tree_pine_snow.tscn" id="8_olgod"]
+[ext_resource type="PackedScene" uid="uid://bttjlxr812mjm" path="res://scenes/blocks/snow/tree_pine_snow_small.tscn" id="9_lix3s"]
+[ext_resource type="PackedScene" uid="uid://c5w0habvlqr6y" path="res://scenes/objects/coin.tscn" id="9_v5wl1"]
+[ext_resource type="FontFile" uid="uid://cwtto4uw1p670" path="res://assets/fonts/Super Trend.ttf" id="10_8xpmp"]
+[ext_resource type="AudioStream" uid="uid://blrqr0ouoq5ax" path="res://assets/sfx/blipSelect.wav" id="11_isjwg"]
+[ext_resource type="AudioStream" uid="uid://dn4ih2jey7rh2" path="res://assets/bgm/Golden Gleam.mp3" id="12_vua21"]
+[ext_resource type="AudioStream" uid="uid://b0attpdfh1f1h" path="res://assets/sfx/hitHurt.wav" id="13_dy0ob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wsan6"]
+render_priority = 0
+shader = ExtResource("1_wsan6")
+shader_parameter/ColorParameter = Color(0.555217, 0.750736, 0.999994, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y5juu"]
+material = SubResource("ShaderMaterial_wsan6")
+size = Vector2(100, 100)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44vtk"]
+albedo_color = Color(0.765411, 0.999963, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r6rj0"]
+material = SubResource("StandardMaterial3D_44vtk")
+size = Vector2(100, 100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kbih0"]
+points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_dy0ob"]
+ground_color = Color(0.407843, 0.745098, 0.831373, 1)
+
+[sub_resource type="Sky" id="Sky_g7yqb"]
+sky_material = SubResource("PhysicalSkyMaterial_dy0ob")
+
+[sub_resource type="Environment" id="Environment_olgod"]
+background_mode = 2
+sky = SubResource("Sky_g7yqb")
+fog_light_color = Color(0.730748, 0.756489, 0.796938, 1)
+volumetric_fog_enabled = true
+volumetric_fog_emission = Color(0.899258, 0.899258, 0.899258, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_44vtk"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.241818, 0.191514, 0.117969, 0.1, 0, 2.9, -0.1, 0, -2.9, -3.48822, 0.126801, -3.31422, 0, 0, 0, 0, 0, 0, 0.0473442, -0.0995097, -6.53254),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_r6rj0"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.342325, 1.52952, -0.0348997, 0, 0, 0, 0, 0, 0, -0.338368, 1.5464, 1.99638),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_kbih0"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.342325, 1.52952, -0.0348997, 0, 0, 0, 0, 0, 0, -0.338368, 1.5464, 1.99638),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_m0hwp"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.342325, 1.52952, -0.0348997, 0, 0, 0, 0, 0, 0, -0.338368, 1.5464, 1.99638),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_v5wl1"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.342325, 1.52952, -0.0348997, 0, 0, 0, 0, 0, 0, -0.338368, 1.5464, 1.99638),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_8xpmp"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.342325, 1.52952, -0.0348997, 0, 0, 0, 0, 0, 0, -0.338368, 1.5464, 1.99638),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isjwg"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vua21"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Level2Snow" type="Node3D"]
+script = ExtResource("1_r6rj0")
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PlaneMesh_y5juu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 47.6889, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Enviroment"]
+mesh = SubResource("PlaneMesh_r6rj0")
+
+[node name="Area3D" type="Area3D" parent="Enviroment/MeshInstance3D2"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/MeshInstance3D2/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_kbih0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_olgod")
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="Block-snow-large" parent="Ground" instance=ExtResource("2_y5juu")]
+transform = Transform3D(9, 0, 0, 0, 4, 0, 0, 0, 12, 0, -1, 0)
+skeleton = NodePath("../../Enviroment")
+
+[node name="Block-snow-large2" parent="Ground" instance=ExtResource("2_y5juu")]
+transform = Transform3D(9, 0, 0, 0, 4, 0, 0, 0, 9, 0, 3, 0)
+skeleton = NodePath("../../Enviroment")
+
+[node name="Block-snow-large-slope-narrow" parent="Ground" instance=ExtResource("3_g87if")]
+transform = Transform3D(-1.68973e-07, -1.02799, -3.86565, -4.49349e-08, 3.86565, -1.02799, 4, -5.72243e-16, -1.74846e-07, 3, 3, 8.47104)
+
+[node name="Block-snow-large3" parent="Ground" instance=ExtResource("2_y5juu")]
+transform = Transform3D(9, 0, 0, 0, 4, 0, 0, 0, 6, 0, 7, 1)
+
+[node name="moving_platform" parent="Ground" instance=ExtResource("5_44vtk")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -10, 5.50822, 6)
+curve = SubResource("Curve3D_44vtk")
+
+[node name="PlayerSpawn" type="Marker3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 10)
+
+[node name="moving_snow" parent="Ground" instance=ExtResource("6_r6rj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5.61617, 6)
+curve = SubResource("Curve3D_r6rj0")
+speed = 2.0
+
+[node name="moving_snow2" parent="Ground" instance=ExtResource("6_r6rj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73207, 5.61617, 6)
+curve = SubResource("Curve3D_kbih0")
+speed = 4.0
+
+[node name="moving_snow3" parent="Ground" instance=ExtResource("6_r6rj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69829, 5.61617, 6)
+curve = SubResource("Curve3D_m0hwp")
+speed = 3.0
+
+[node name="moving_snow4" parent="Ground" instance=ExtResource("6_r6rj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529999, 5.61617, 6)
+curve = SubResource("Curve3D_v5wl1")
+speed = 2.0
+
+[node name="moving_snow5" parent="Ground" instance=ExtResource("6_r6rj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73033, 5.61617, 6)
+curve = SubResource("Curve3D_8xpmp")
+speed = 4.0
+
+[node name="Block-snow-large-tall" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 7, -5)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-slope-narrow2" parent="Ground" instance=ExtResource("3_g87if")]
+transform = Transform3D(-8.74228e-08, -7.76469e-23, -2, -1.77636e-15, 2, 0, 2, 1.77636e-15, -8.74228e-08, -2, 6.45567, -7)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall2" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6, -7)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-slope-narrow3" parent="Ground" instance=ExtResource("3_g87if")]
+transform = Transform3D(-1.12057, -0.489391, -1.58266, 0.123006, 1.88088, -0.668697, 1.65203, -0.471999, -1.02373, 4.49635, 7.86384, -5.36735)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall3" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 6.76549, 5.85235, -5.74383)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall4" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(1, 0, 0, 0, 6, 0, 0, 0, 2, 9.64525, -1.20873, -4.21712)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-slope-narrow4" parent="Ground" instance=ExtResource("3_g87if")]
+transform = Transform3D(-0.00920175, -0.383372, -0.966744, -0.0200299, 1.44996, -0.255363, 0.999757, 0.025521, -0.0140142, 8.07551, 9.45363, -5.53353)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall5" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 4)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall6" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, -6, 11, 1)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall7" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, -2)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall8" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -3.49124, 11, 2)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall9" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -2.11898, 11, 0.392152)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall10" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -1.85594, 11, 1.25451)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall11" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.637057, 11, -0.0934086)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall12" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 1.56636, 11, 0.926617)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall13" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 3.78489, 11, 2.25942)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall14" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -0.404107, 11, 3.00065)
+skeleton = NodePath("../..")
+
+[node name="Block-snow-large-tall15" parent="Ground" instance=ExtResource("7_kbih0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9771, 11, -0.834217)
+skeleton = NodePath("../..")
+
+[node name="Tree-pine-snow" parent="Ground" instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58991, 3, 10.6793)
+
+[node name="Tree-pine-snow-small" parent="Ground" instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33791, 3, 10.7991)
+
+[node name="Goal" parent="." instance=ExtResource("8_m0hwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49646, 11, 2.40331)
+
+[node name="CoinsSpawn" type="Node3D" parent="."]
+
+[node name="CoinObj" parent="CoinsSpawn" instance=ExtResource("9_v5wl1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.57924, 11, 2.73534)
+
+[node name="CoinObj2" parent="CoinsSpawn" instance=ExtResource("9_v5wl1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8.29442, 7, -5.95718)
+
+[node name="CoinObj3" parent="CoinsSpawn" instance=ExtResource("9_v5wl1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.07006, 11, 5.89986)
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 60.0
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = 6.0
+offset_right = 145.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_isjwg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vua21")
+text = "MAIN MENU"
+
+[node name="Quit" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_isjwg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vua21")
+text = "QUIT GAME"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.0
+offset_right = 214.0
+offset_bottom = 231.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("10_8xpmp")
+theme_override_font_sizes/font_size = 80
+text = "LEVEL COMPLETE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -151.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_8xpmp")
+theme_override_font_sizes/font_size = 30
+text = "TIME LEFT:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -129.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_8xpmp")
+theme_override_font_sizes/font_size = 30
+text = "COINS COLLECTED: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_isjwg")
+pitch_scale = 1.57
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_vua21")
+volume_db = 10.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_dy0ob")
+
+[node name="Tree-pine-snow" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65871, 11, 5.79384)
+
+[node name="Tree-pine-snow-small" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.99638, 11, 6.02001)
+
+[node name="Tree-pine-snow2" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00404, 11, 5.27088)
+
+[node name="Tree-pine-snow3" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29508, 7, -6.65854)
+
+[node name="Tree-pine-snow-small2" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36326, 7, -5.22595)
+
+[node name="Tree-pine-snow4" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2536, 6.97469, -5.61327)
+
+[node name="Tree-pine-snow-small3" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22914, 7, -5.30579)
+
+[node name="Tree-pine-snow5" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74064, 3, -10.1612)
+
+[node name="Tree-pine-snow6" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.697066, 3, -10.5902)
+
+[node name="Tree-pine-snow-small4" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54236, 3, -10.7821)
+
+[node name="Tree-pine-snow7" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.38984, 3, -9.55687)
+
+[node name="Tree-pine-snow-small5" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89961, 3, -9.85616)
+
+[node name="Tree-pine-snow-small6" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51756, 3, -10.4445)
+
+[node name="Tree-pine-snow8" parent="." instance=ExtResource("8_olgod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44011, 3, -10.8016)
+
+[node name="Tree-pine-snow-small7" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98529, 3, -10.2518)
+
+[node name="Tree-pine-snow-small8" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1612, 3, -9.75663)
+
+[node name="Tree-pine-snow-small9" parent="." instance=ExtResource("9_lix3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57165, 3, -10.1781)
+
+[connection signal="body_entered" from="Enviroment/MeshInstance3D2/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

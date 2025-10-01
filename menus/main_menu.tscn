@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=3 uid="uid://ga8mfp2qmeua"]
+
+[ext_resource type="FontFile" uid="uid://cwtto4uw1p670" path="res://assets/fonts/Super Trend.ttf" id="1_8gy84"]
+[ext_resource type="Script" uid="uid://nil16fvv7foo" path="res://scripts/menus/main_menu.gd" id="1_ij7vn"]
+[ext_resource type="Texture2D" uid="uid://1vcpiq26cdli" path="res://Screenshot 2025-09-22 000834.png" id="2_a63lr"]
+[ext_resource type="StyleBox" uid="uid://cqpsvudkte84b" path="res://menus/main_menu_button_hover.tres" id="2_rqbgu"]
+[ext_resource type="StyleBox" uid="uid://m3vjoagv0xuu" path="res://menus/main_menu_button.tres" id="2_yjgyn"]
+[ext_resource type="AudioStream" uid="uid://blrqr0ouoq5ax" path="res://assets/sfx/blipSelect.wav" id="5_oblsv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pwbes"]
+texture = ExtResource("2_a63lr")
+modulate_color = Color(0.45789, 0.596057, 0.597869, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjgyn"]
+bg_color = Color(0.517647, 0.662745, 0.811765, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 6
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqbgu"]
+bg_color = Color(0.517647, 0.662745, 0.811765, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 6
+shadow_offset = Vector2(5, 5)
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_ij7vn")
+
+[node name="MainMenuUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MainMenuUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pwbes")
+
+[node name="Main" type="VBoxContainer" parent="MainMenuUI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 71.0
+offset_top = -86.0
+offset_right = 396.0
+offset_bottom = 87.0
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Play" type="Button" parent="MainMenuUI/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("2_rqbgu")
+theme_override_styles/normal = ExtResource("2_yjgyn")
+text = "PLAY"
+
+[node name="Settings" type="Button" parent="MainMenuUI/Main"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("2_rqbgu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+text = "SETTINGS"
+
+[node name="Quit Game" type="Button" parent="MainMenuUI/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("2_rqbgu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rqbgu")
+text = "QUIT GAME"
+
+[node name="Label" type="Label" parent="MainMenuUI"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -900.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.194349, 0.194349, 0.194349, 1)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 9
+theme_override_fonts/font = ExtResource("1_8gy84")
+theme_override_font_sizes/font_size = 100
+text = "Marble Ball Run"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_oblsv")
+pitch_scale = 1.57
+
+[connection signal="pressed" from="MainMenuUI/Main/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenuUI/Main/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenuUI/Main/Quit Game" to="." method="_on_quit_game_pressed"]

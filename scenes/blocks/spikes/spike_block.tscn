@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://4t1nqdvxkcwe"]
+
+[ext_resource type="ArrayMesh" uid="uid://cxlhqtjsd2i0g" path="res://assets/Kenney/PlatformerKit/spike-block.obj" id="1_0l8op"]
+[ext_resource type="Script" uid="uid://b1qqrjghcpykb" path="res://scripts/object/spike_block.gd" id="2_b4th2"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b4th2"]
+points = PackedVector3Array(-0.45, 0.5, 0, -0.35001, 0.399922, -0.100078, -0.35001, 0.399922, 0.0999902, -0.25002, 0.69998, 0.19998, -0.35001, 0.59999, -0.100078, -0.25002, 0.299931, -0.200069, -0.25002, 0.299931, 0.19998, -0.200069, 0.69998, 0.249931, -0.200069, 0.749931, 0.19998, -0.25002, 0.69998, -0.200069, -0.200069, 0.299931, -0.25002, -0.200069, 0.24998, -0.200069, -0.200069, 0.24998, 0.19998, -0.200069, 0.299931, 0.249931, 0, 0.5, 0.45, 0, 0.95, 0, -0.200069, 0.749931, -0.200069, -0.200069, 0.69998, -0.25002, -0.100078, 0.399922, -0.35001, -0.100078, 0.14999, -0.100078, -0.100078, 0.14999, 0.0999902, 0.45, 0.5, 0, 0.19998, 0.69998, 0.249931, 0.19998, 0.299931, 0.249931, 0.19998, 0.749931, -0.200069, 0.19998, 0.749931, 0.19998, -0.100078, 0.59999, -0.35001, 0, 0.5, -0.45, 0.0999902, 0.399922, -0.35001, 0, 0.0499999, 0, 0.0999902, 0.14999, -0.100078, 0.249931, 0.299931, -0.200069, 0.249931, 0.69998, -0.200069, 0.249931, 0.69998, 0.19998, 0.249931, 0.299931, 0.19998, 0.19998, 0.24998, 0.19998, 0.19998, 0.69998, -0.25002, 0.19998, 0.299931, -0.25002, 0.19998, 0.24998, -0.200069)
+
+[node name="Spike-block" type="MeshInstance3D"]
+mesh = ExtResource("1_0l8op")
+script = ExtResource("2_b4th2")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_b4th2")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

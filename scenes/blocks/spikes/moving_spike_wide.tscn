@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6rswhhbrwxc0"]
+
+[ext_resource type="PackedScene" uid="uid://c55vrtrd2ti3x" path="res://scenes/blocks/spikes/spike_block_wide.tscn" id="1_e28xo"]
+[ext_resource type="Script" uid="uid://bnwo21si3t3nr" path="res://scripts/object/moving_spike_wide.gd" id="1_i3sv8"]
+
+[sub_resource type="Curve3D" id="Curve3D_e28xo"]
+resource_local_to_scene = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_omhc7"]
+points = PackedVector3Array(0.749882, 0.95, 0, 0.749882, 0.5, 0.45, 0.949804, 0.749931, 0.19998, 0.849961, 0.849922, 0.0999902, 1.2, 0.5, 0, 0.849961, 0.849922, -0.100078, -0.750118, 0.95, 0, 0.849961, 0.399922, 0.349922, 0.849961, 0.59999, 0.349922, 0.949804, 0.69998, 0.249931, -0.750118, 0.5, 0.45, 0.999843, 0.69998, 0.19998, 1.09992, 0.399922, 0.0999902, 1.09992, 0.399922, -0.100078, 1.09992, 0.59999, -0.100078, 0.999843, 0.69998, -0.200069, 0.949804, 0.749931, -0.200069, -0.850196, 0.849922, -0.100078, -1.10016, 0.59999, -0.100078, -1.10016, 0.59999, 0.0999902, -0.850196, 0.849922, 0.0999902, -0.950039, 0.749931, 0.19998, 0.949804, 0.299931, 0.249931, 0.999843, 0.299931, 0.19998, -0.950039, 0.69998, 0.249931, -0.850196, 0.59999, 0.349922, -1.10016, 0.399922, 0.0999902, -0.850196, 0.399922, 0.349922, 0.849961, 0.14999, 0.0999902, 0.849961, 0.14999, -0.100078, 0.999843, 0.299931, -0.200069, 0.849961, 0.399922, -0.35001, 0.849961, 0.59999, -0.35001, 0.949804, 0.69998, -0.25002, -0.950039, 0.749931, -0.200069, -1.00008, 0.69998, -0.200069, -1.10016, 0.399922, -0.100078, -1.2, 0.5, 0, -0.850196, 0.59999, -0.35001, -1.00008, 0.69998, 0.19998, 0.949804, 0.24998, 0.19998, -1.00008, 0.299931, 0.19998, -0.850196, 0.14999, 0.0999902, -0.950039, 0.299931, 0.249931, 0.749882, 0.05, 0, 0.949804, 0.24998, -0.200069, -0.850196, 0.14999, -0.100078, 0.949804, 0.299931, -0.25002, 0.749882, 0.5, -0.45, -0.850196, 0.399922, -0.35001, -0.950039, 0.69998, -0.25002, -1.00008, 0.299931, -0.200069, -0.750118, 0.5, -0.45, -0.950039, 0.24998, 0.19998, -0.750118, 0.05, 0, -0.950039, 0.24998, -0.200069, -0.950039, 0.299931, -0.25002)
+
+[sub_resource type="Animation" id="Animation_omhc7"]
+resource_name = "move"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_0oggo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ro20y"]
+_data = {
+&"RESET": SubResource("Animation_0oggo"),
+&"move": SubResource("Animation_omhc7")
+}
+
+[node name="moving_spike_wide" type="Path3D"]
+curve = SubResource("Curve3D_e28xo")
+script = ExtResource("1_i3sv8")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.999983, -0.000120818, 0.00574641, 3.63798e-12, 0.999779, 0.0210204, -0.00574768, 0.02102, -0.999763, -0.228432, 0.138851, 0.00442314)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="PathFollow3D"]
+remote_path = NodePath("../../AnimatableBody3D")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(-0.999983, -0.000120818, 0.00574641, 3.63798e-12, 0.999779, 0.0210204, -0.00574768, 0.02102, -0.999763, -0.228432, 0.138851, 0.00442314)
+collision_mask = 2
+
+[node name="Spike-block-wide" parent="AnimatableBody3D" instance=ExtResource("1_e28xo")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_omhc7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_ro20y")
+}
+autoplay = "move"
+
+[connection signal="touch_spike" from="AnimatableBody3D/Spike-block-wide" to="." method="_on_spikeblockwide_touch_spike"]
