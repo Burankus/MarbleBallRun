@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://du24v8vembatk"
+path="res://.godot/imported/Wanderers Tale.ogg-2780991c61c8cccad7bf50197feb9b02.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/bgm/Wanderers Tale.ogg"
+dest_files=["res://.godot/imported/Wanderers Tale.ogg-2780991c61c8cccad7bf50197feb9b02.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
